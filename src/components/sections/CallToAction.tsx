@@ -22,7 +22,7 @@ export function CallToAction() {
 
               <div>
                 <h2 id="cta-title" className="font-display text-2xl font-bold text-white sm:text-3xl">
-                  Solicite um orçamento para o seu caso.
+                  Envie seu caso para o laboratório.
                 </h2>
                 <p className="mt-2 max-w-xl text-sm text-steel sm:text-base">
                   {site.shortDescription}

@@ -20,10 +20,10 @@ export function WorkInMotion() {
         <Reveal>
           <SectionHeading
             id="bastidores-title"
-            eyebrow="Bastidores"
-            title="O acabamento visto de perto."
+            eyebrow="Em vídeo"
+            title="Duas peças conferidas sobre o modelo"
             tone="light"
-            description="Registros feitos no laboratório durante a conferência da adaptação das peças sobre os modelos de trabalho."
+            description="Gravações feitas no laboratório, na etapa em que a adaptação da peça é verificada antes da entrega."
           />
         </Reveal>
 

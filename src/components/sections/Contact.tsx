@@ -41,8 +41,8 @@ export function Contact() {
           <SectionHeading
             id="contato-title"
             eyebrow="Contato"
-            title="Vamos conversar sobre seu próximo trabalho?"
-            description="Entre em contato com o Lab Leles para consultar nossos serviços e alinhar as necessidades do seu laboratório ou consultório."
+            title="Fale com o laboratório"
+            description="O caminho mais rápido é o WhatsApp. Se preferir, use o formulário e a mensagem é montada para você."
           />
         </Reveal>
 

@@ -56,10 +56,10 @@ export function ContactForm() {
 
   return (
     <div className="rounded-2xl border border-steel/40 bg-white p-6 shadow-card sm:p-8">
-      <h3 className="font-display text-xl font-semibold">Envie os dados do seu trabalho</h3>
+      <h3 className="font-display text-xl font-semibold">Enviar um caso</h3>
       <p className="mt-2 text-sm leading-relaxed text-graphite/70">
-        Preencha os campos abaixo para montar sua mensagem. O envio automático ainda não foi configurado nesta
-        versão do site.
+        Preencha os campos e o site monta a mensagem no WhatsApp para você revisar antes de enviar. Nada é
+        gravado aqui.
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="mt-7 space-y-5">
@@ -68,7 +68,7 @@ export function ContactForm() {
             label="Nome"
             name="name"
             autoComplete="name"
-            placeholder="Seu nome completo"
+            placeholder="Nome completo"
             value={values.name}
             error={errors.name}
             onChange={(event) => updateField('name', event.target.value)}
@@ -79,7 +79,7 @@ export function ContactForm() {
             label="Clínica ou laboratório"
             name="clinic"
             autoComplete="organization"
-            placeholder="Nome da clínica"
+            placeholder="Opcional"
             optional
             value={values.clinic}
             onChange={(event) => updateField('clinic', event.target.value)}
@@ -104,7 +104,7 @@ export function ContactForm() {
             type="email"
             inputMode="email"
             autoComplete="email"
-            placeholder="seuemail@exemplo.com"
+            placeholder="nome@clinica.com.br"
             value={values.email}
             error={errors.email}
             onChange={(event) => updateField('email', event.target.value)}
@@ -133,7 +133,7 @@ export function ContactForm() {
           label="Mensagem"
           name="message"
           rows={4}
-          placeholder="Descreva o trabalho que você precisa."
+          placeholder="Conte o que precisa ser feito."
           value={values.message}
           error={errors.message}
           onChange={(event) => updateField('message', event.target.value)}

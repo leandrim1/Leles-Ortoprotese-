@@ -10,8 +10,8 @@ export function Process() {
           <SectionHeading
             id="como-trabalhamos-title"
             eyebrow="Como trabalhamos"
-            title="Um fluxo simples do primeiro contato à entrega."
-            description="Uma visão geral do relacionamento entre o laboratório e o profissional. As etapas específicas variam conforme o serviço contratado."
+            title="Do primeiro contato à entrega"
+            description="O caminho é o mesmo para todos os serviços. O que muda de um trabalho para outro é o fluxo técnico da produção."
           />
         </Reveal>
 

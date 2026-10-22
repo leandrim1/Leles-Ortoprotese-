@@ -12,7 +12,7 @@ export function Differentials() {
           <SectionHeading
             id="diferenciais-title"
             eyebrow="Diferenciais"
-            title="O que orienta o trabalho do Lab Leles."
+            title="Como o laboratório trabalha"
           />
         </Reveal>
 

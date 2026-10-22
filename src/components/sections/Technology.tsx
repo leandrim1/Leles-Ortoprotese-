@@ -33,10 +33,10 @@ export function Technology() {
               <SectionHeading
                 id="tecnologia-title"
                 eyebrow="Tecnologia"
-                title="O digital transformando o trabalho laboratorial."
+                title="Planejamento digital e impressão 3D"
                 tone="light"
                 align="left"
-                description="Recursos digitais e impressão 3D ampliam as possibilidades de planejamento e produção, integrando tecnologia e conhecimento técnico ao trabalho protético."
+                description="Parte dos casos é trabalhada em ambiente digital antes de ir para a produção. Os modelos impressos servem para montar a peça e conferir a adaptação."
               />
             </Reveal>
 
@@ -97,7 +97,7 @@ export function Technology() {
                 <div className="col-span-2 flex flex-col justify-center rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-center">
                   <p className="font-display text-2xl font-bold text-white">3D</p>
                   <p className="mt-1 text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-steel/80">
-                    Impressão aplicada ao fluxo laboratorial
+                    Modelos impressos no fluxo do laboratório
                   </p>
                 </div>
               </div>

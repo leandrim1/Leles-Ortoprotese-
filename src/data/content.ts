@@ -1,119 +1,121 @@
 import {
-  Crosshair,
+  ClipboardCheck,
   Cpu,
-  Handshake,
-  Layers3,
+  MapPin,
   MessageSquare,
   Microscope,
   PackageCheck,
   ScanLine,
-  Sparkles,
+  SearchCheck,
   Truck,
 } from 'lucide-react';
 import type { Differential, Pillar, ProcessStep } from '@/types';
 
-/** Pilares institucionais da seção "O Laboratório". */
+/** Como o laboratório trabalha, na seção "O Laboratório". */
 export const pillars: Pillar[] = [
   {
-    id: 'precisao',
-    title: 'Precisão',
-    description: 'Atenção aos detalhes em cada etapa do processo de fabricação.',
-    icon: Crosshair,
+    id: 'prescricao',
+    title: 'O caso é do dentista',
+    description:
+      'O laboratório executa o que vem na prescrição. Quando algo no modelo ou no pedido não fecha, avisamos antes de produzir.',
+    icon: ClipboardCheck,
   },
   {
-    id: 'tecnologia',
-    title: 'Tecnologia',
-    description: 'Recursos digitais aplicados à produção de soluções protéticas.',
+    id: 'digital',
+    title: 'Digital quando o trabalho pede',
+    description:
+      'Parte dos casos passa por planejamento digital e impressão 3D. Outros seguem o fluxo convencional — o que define é o serviço.',
     icon: Cpu,
   },
   {
-    id: 'parceria',
-    title: 'Parceria',
-    description: 'Relacionamento próximo com dentistas e clínicas para facilitar o fluxo de trabalho.',
-    icon: Handshake,
+    id: 'contato',
+    title: 'Contato direto',
+    description:
+      'Durante o trabalho você fala direto com o laboratório, pelo WhatsApp, com quem está acompanhando o caso.',
+    icon: MessageSquare,
   },
 ];
 
-/** Visão geral do fluxo de relacionamento com o profissional. */
+/** Etapas do relacionamento, do primeiro contato à entrega. */
 export const processSteps: ProcessStep[] = [
   {
     id: 'contato',
     step: 1,
-    title: 'Contato profissional',
-    description: 'O dentista entra em contato com o laboratório para apresentar o caso.',
+    title: 'Contato',
+    description: 'Você envia o caso pelo WhatsApp e informa qual serviço precisa.',
     icon: MessageSquare,
   },
   {
     id: 'alinhamento',
     step: 2,
-    title: 'Alinhamento do trabalho',
-    description: 'São definidos o serviço solicitado e os requisitos necessários para a execução.',
+    title: 'Alinhamento',
+    description: 'Combinamos o serviço, os requisitos e o que precisa chegar ao laboratório.',
     icon: ScanLine,
   },
   {
     id: 'producao',
     step: 3,
-    title: 'Produção laboratorial',
-    description: 'O trabalho segue o fluxo técnico aplicável ao serviço contratado.',
+    title: 'Produção',
+    description: 'A peça é confeccionada seguindo o fluxo técnico do serviço contratado.',
     icon: Microscope,
   },
   {
     id: 'entrega',
     step: 4,
-    title: 'Entrega e acompanhamento',
-    description: 'O laboratório combina a entrega e mantém o contato conforme o processo estabelecido.',
+    title: 'Entrega',
+    description: 'Combinamos a entrega e seguimos disponíveis durante o acompanhamento do caso.',
     icon: Truck,
   },
 ];
 
-/** Diferenciais institucionais de posicionamento. */
+/** Diferenciais, descritos pelo que o laboratório faz. */
 export const differentials: Differential[] = [
   {
-    id: 'digital',
-    title: 'Atuação com tecnologia digital',
-    description: 'Recursos digitais e impressão 3D integrados ao trabalho protético do laboratório.',
-    icon: Layers3,
+    id: 'prescricao',
+    title: 'Trabalho sob prescrição',
+    description: 'O serviço segue o que o dentista especifica no caso. Nada é decidido pelo laboratório.',
+    icon: ClipboardCheck,
   },
   {
-    id: 'detalhes',
-    title: 'Atenção aos detalhes',
-    description: 'Conferência cuidadosa do acabamento e da adaptação de cada peça produzida.',
-    icon: Sparkles,
+    id: 'conferencia',
+    title: 'Conferência sobre o modelo',
+    description: 'A adaptação da peça é verificada sobre o modelo antes de sair do laboratório.',
+    icon: SearchCheck,
   },
   {
-    id: 'solucoes',
-    title: 'Variedade de soluções',
-    description: 'Ortopedia, ortodontia digital, impressão 3D, placas e alinhadores em um só laboratório.',
+    id: 'frentes',
+    title: 'Cinco frentes de trabalho',
+    description: 'Ortopedia, ortodontia fixa digital, impressão 3D, placas e alinhadores no mesmo lugar.',
     icon: PackageCheck,
   },
   {
     id: 'alcance',
-    title: 'Atendimento a diferentes localidades',
+    title: 'Atendimento a outras cidades',
     description: 'De Patos de Minas, atendemos profissionais de diversas regiões do Brasil.',
-    icon: Truck,
+    icon: MapPin,
   },
 ];
 
-/** Blocos visuais da seção de tecnologia digital. */
+/** Blocos da seção de tecnologia digital. */
 export const technologyHighlights = [
   {
     id: 'modelagem',
-    title: 'Modelagem odontológica digital',
-    description: 'O caso recebido é trabalhado em ambiente digital antes de seguir para a produção.',
+    title: 'Modelagem digital',
+    description: 'O caso é trabalhado em ambiente digital antes de ir para a produção.',
   },
   {
     id: 'modelos',
-    title: 'Modelos tridimensionais',
-    description: 'Modelos em três dimensões apoiam a conferência da anatomia e da adaptação das peças.',
+    title: 'Modelos impressos',
+    description: 'Os modelos em 3D servem para montar a peça e conferir a adaptação.',
   },
   {
     id: 'impressao',
     title: 'Impressão 3D',
-    description: 'A impressão 3D materializa modelos e peças que integram o fluxo laboratorial.',
+    description: 'Modelos e peças impressos entram no fluxo de trabalho do laboratório.',
   },
   {
-    id: 'producao',
-    title: 'Planejamento e produção',
-    description: 'Planejamento e produção caminham juntos, do recebimento do caso à entrega do trabalho.',
+    id: 'fluxo',
+    title: 'Fluxo definido pelo serviço',
+    description: 'Alguns trabalhos passam pelo digital do começo ao fim, outros seguem o convencional.',
   },
 ] as const;

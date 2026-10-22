@@ -37,14 +37,15 @@ export function Hero() {
               id="hero-title"
               className="mt-7 font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-[3.5rem] xl:text-6xl"
             >
-              Precisão digital.
+              Prótese dentária
               <span className="mt-1 block bg-gradient-to-b from-white to-steel bg-clip-text text-transparent">
-                Excelência em cada detalhe.
+                feita caso a caso.
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-steel sm:text-lg">
-              Tecnologia, qualidade e cuidado na produção de soluções protéticas para profissionais da odontologia.
+              O Lab Leles confecciona aparelhos, placas e peças protéticas a partir dos modelos e do
+              planejamento enviados pelo dentista responsável pelo caso.
             </p>
 
             <p className="mt-7 inline-flex items-center gap-2.5 rounded-xl border-l-2 border-white/50 bg-white/[0.06] py-3 pl-4 pr-5 font-display text-sm font-semibold text-white sm:text-base">
@@ -65,7 +66,7 @@ export function Hero() {
               </LinkButton>
 
               <Button variant="outlineLight" size="lg" onClick={() => scrollToSection('servicos')}>
-                Conhecer nossos serviços
+                Ver os serviços
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
@@ -107,7 +108,7 @@ export function Hero() {
                   <Logo size={44} tone="light" priority />
                   <div>
                     <p className="font-display text-sm font-semibold text-white">Ortodontia fixa digital</p>
-                    <p className="text-xs text-steel">Trabalho produzido no laboratório</p>
+                    <p className="text-xs text-steel">Peça adaptada sobre modelo impresso</p>
                   </div>
                 </div>
               </div>

@@ -16,10 +16,10 @@ export default function NotFound() {
         <Logo size={72} className="mx-auto" />
 
         <p className="mt-8 font-display text-5xl font-bold text-wine">404</p>
-        <h1 className="mt-3 text-2xl sm:text-3xl">Página não encontrada</h1>
+        <h1 className="mt-3 text-2xl sm:text-3xl">Esta página não existe</h1>
         <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-graphite/70">
-          O endereço acessado não existe ou foi movido. Volte para a página inicial para conhecer os serviços do
-          Lab Leles.
+          O endereço acessado não existe ou foi movido. Volte para a página inicial para ver os serviços do
+          laboratório.
         </p>
 
         <Link

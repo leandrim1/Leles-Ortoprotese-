@@ -55,9 +55,9 @@ export function About() {
               <SectionHeading
                 id="laboratorio-title"
                 eyebrow="O Laboratório"
-                title="Tecnologia e precisão a serviço da odontologia."
+                title="Um laboratório de prótese em Patos de Minas"
                 align="left"
-                description="O Lab Leles é um laboratório especializado em soluções protéticas, unindo conhecimento técnico, tecnologia digital e atenção aos detalhes. Com sede em Patos de Minas, atendemos profissionais que buscam qualidade, precisão e parceria em cada trabalho."
+                description="Atendemos dentistas e clínicas da cidade e de outras regiões do país. O trabalho chega por indicação do profissional e volta pronto para a consulta."
               />
             </Reveal>
 

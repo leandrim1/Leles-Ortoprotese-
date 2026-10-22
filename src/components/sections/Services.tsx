@@ -12,8 +12,8 @@ export function Services() {
           <SectionHeading
             id="servicos-title"
             eyebrow="Serviços"
-            title="Soluções para diferentes necessidades clínicas."
-            description="Trabalhos executados a partir do planejamento enviado pelo profissional responsável pelo caso."
+            title="O que o laboratório executa"
+            description="Cinco frentes de trabalho. Materiais, prazos e detalhes técnicos são combinados caso a caso, direto com o laboratório."
           />
         </Reveal>
 
@@ -94,7 +94,7 @@ export function Services() {
 
         <Reveal delay={120}>
           <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-graphite/70">
-            Materiais, prazos e especificações técnicas são definidos caso a caso, diretamente com o laboratório.
+            Cada peça é executada a partir dos modelos e da prescrição enviados pelo dentista.
           </p>
         </Reveal>
       </div>

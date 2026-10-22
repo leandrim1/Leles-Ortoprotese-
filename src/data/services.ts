@@ -14,8 +14,9 @@ import alinhadoresThumb from '@/assets/gallery/modelo-3d-banda-sm.webp';
 
 /**
  * Serviços informados pelo laboratório.
- * As descrições são institucionais e devem ser validadas pelo Lab Leles antes de
- * receberem especificações técnicas, materiais ou prazos.
+ * As descrições dizem o que o laboratório executa e de onde vem a prescrição.
+ * Materiais, prazos e indicações clínicas são combinados caso a caso e não
+ * aparecem aqui enquanto não forem confirmados pelo Lab Leles.
  */
 export const services: Service[] = [
   {
@@ -23,43 +24,43 @@ export const services: Service[] = [
     name: 'Ortopedia dentária',
     tagline: 'Aparelhos ortopédicos',
     description:
-      'Confecção de aparelhos de ortopedia dentária a partir do planejamento enviado pelo profissional, com acabamento cuidadoso em cada peça.',
+      'Aparelhos ortopédicos confeccionados a partir dos modelos e da prescrição enviados pelo dentista.',
     icon: Activity,
     image: ortopediaImg,
     imageSmall: ortopediaThumb,
     imageAlt: 'Aparelho ortopédico em acrílico azul com parafuso expansor, produzido no Lab Leles.',
-    highlights: ['Trabalho sob prescrição do profissional', 'Acabamento conferido peça a peça'],
+    highlights: ['Modelos e prescrição enviados pelo dentista', 'Adaptação conferida sobre o modelo'],
   },
   {
     id: 'ortodontia-fixa-digital',
     name: 'Ortodontia fixa digital',
     tagline: 'Fluxo digital',
     description:
-      'Soluções de ortodontia fixa apoiadas em recursos digitais, do recebimento do caso à entrega do trabalho ao consultório.',
+      'Trabalhos de ortodontia fixa planejados em ambiente digital e executados sobre modelos impressos.',
     icon: Layers,
     image: ortodontiaImg,
     imageSmall: ortodontiaThumb,
     imageAlt: 'Modelo odontológico impresso com estrutura metálica de ortodontia fixa.',
-    highlights: ['Apoio de recursos digitais no planejamento', 'Adaptação verificada sobre modelo'],
+    highlights: ['Planejamento em ambiente digital', 'Montagem sobre modelo impresso'],
   },
   {
     id: 'impressao-3d',
     name: 'Impressão 3D',
     tagline: 'Modelos e peças',
     description:
-      'Impressão 3D aplicada à produção de modelos e peças odontológicas, ampliando as possibilidades de planejamento laboratorial.',
+      'Impressão de modelos e peças odontológicas que entram no fluxo de trabalho do laboratório.',
     icon: Printer,
     image: impressaoImg,
     imageSmall: impressaoThumb,
     imageAlt: 'Modelos odontológicos impressos em 3D com aparelho expansor instalado.',
-    highlights: ['Modelos impressos para o fluxo de trabalho', 'Reprodução fiel da anatomia recebida'],
+    highlights: ['Modelos e peças para o fluxo do laboratório', 'Reprodução fiel da anatomia recebida'],
   },
   {
     id: 'placas-bruxismo',
     name: 'Placas para bruxismo',
-    tagline: 'Placas miorrelaxantes',
+    tagline: 'Sob indicação clínica',
     description:
-      'Placas voltadas ao manejo do bruxismo, confeccionadas conforme a indicação do dentista responsável pelo caso.',
+      'Placas confeccionadas conforme a indicação do dentista responsável pelo caso.',
     icon: ShieldCheck,
     image: placasImg,
     imageSmall: placasThumb,
@@ -69,9 +70,9 @@ export const services: Service[] = [
   {
     id: 'alinhadores',
     name: 'Alinhadores',
-    tagline: 'Soluções estéticas',
+    tagline: 'Planejamento do dentista',
     description:
-      'Soluções laboratoriais relacionadas a alinhadores, executadas a partir do planejamento do profissional responsável pelo tratamento.',
+      'Execução laboratorial de alinhadores a partir do planejamento enviado. O tratamento é conduzido pelo dentista.',
     icon: Boxes,
     image: alinhadoresImg,
     imageSmall: alinhadoresThumb,

@@ -45,8 +45,8 @@ export function Gallery() {
           <SectionHeading
             id="trabalhos-title"
             eyebrow="Galeria"
-            title="Precisão que pode ser vista nos detalhes."
-            description="Trabalhos produzidos no Lab Leles: próteses, modelos odontológicos, impressões 3D, placas e peças laboratoriais."
+            title="Peças produzidas no laboratório"
+            description="Fotografias dos próprios trabalhos do Lab Leles. Toque em uma imagem para ampliar."
           />
         </Reveal>
 
