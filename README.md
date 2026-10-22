@@ -13,7 +13,7 @@ conteúdo vem de arquivos estáticos em `src/data/`.
 - **Vite 5** (build e servidor de desenvolvimento)
 - **React Router 6** (rota principal e página 404)
 - **Tailwind CSS 3**
-- **lucide-react** (ícones)
+- **lucide-react** — apenas os seis ícones que têm função (play, fechar, setas, menu)
 
 ## Como executar
 
@@ -34,9 +34,9 @@ src/
 │   ├── gallery/       Fotos em .webp (versão grande e versão -sm para a grade)
 │   └── video/         Vídeos .mp4 e seus frames de capa
 ├── components/
-│   ├── layout/        Header, Footer, Layout e botão flutuante do WhatsApp
+│   ├── layout/        Header, Footer, Layout e atalho fixo do WhatsApp
 │   ├── sections/      Uma seção da página por arquivo
-│   └── ui/            Button, Modal, Logo, Reveal, Field, SectionHeading, VideoPlayer
+│   └── ui/            Button, Modal, Logo, Field, SectionHeading, VideoPlayer
 ├── data/              Conteúdo editável: site, serviços, horários, galeria, vídeos
 ├── hooks/             Scroll spy, reveal, horário de funcionamento, foco e rolagem
 ├── pages/             Home e NotFound
@@ -57,13 +57,37 @@ ser atualizado sem mexer no layout:
 | `src/data/hours.ts` | Horários de funcionamento por dia da semana |
 | `src/data/gallery.ts` | Fotos da galeria de trabalhos |
 | `src/data/videos.ts` | Vídeos do laboratório e seus frames de capa |
-| `src/data/content.ts` | Pilares, etapas do processo, diferenciais e tecnologia |
+| `src/data/content.ts` | Como o laboratório trabalha e as etapas do processo |
 | `src/data/navigation.ts` | Itens do menu |
 
 ## Seções da página
 
-Início (hero) · O Laboratório · Serviços · Tecnologia · Como Trabalhamos ·
-Bastidores (vídeos) · Galeria de trabalhos · Diferenciais · Contato e horários.
+As seções são numeradas de 01 a 07, como uma ficha técnica:
+
+Início (hero) · 01 O Laboratório · 02 Serviços · 03 Fluxo digital ·
+04 Como trabalhamos · 05 Em vídeo · 06 Trabalhos · 07 Contato e horários.
+
+## Direção de arte
+
+O site é construído sobre réguas finas, não sobre cards com sombra. A estrutura
+visual vem de quatro decisões:
+
+- **Neutros quentes de papel** (`#FBFAF7`, `#F2EFE9`) no lugar de cinzas de
+  interface. O vinho da marca aparece como acento — índices, links, botão
+  principal — e preenche uma única seção escura, a do fluxo digital.
+- **Réguas de 1px** separam conteúdo. Não há sombras, gradientes, brilhos,
+  cantos arredondados grandes nem botões em formato de pílula.
+- **Archivo + IBM Plex Mono.** O mono carrega só os dados técnicos: índices de
+  seção, rótulos, horários e numeração da galeria. A escala tipográfica é fechada
+  em `tailwind.config.js` — nenhum título escolhe o próprio tamanho.
+- **Cada seção tem uma composição diferente.** Índice numerado nos serviços,
+  sequência de quatro etapas no processo, mosaico com uma peça em destaque na
+  galeria, duas colunas assimétricas no laboratório. Nenhuma grade de cards se
+  repete.
+
+Ícones aparecem só onde têm função: play, fechar, setas da galeria e menu do
+celular. Não há ícone decorativo, animação de entrada nem elemento flutuante sem
+uso.
 
 ## Decisões relevantes
 
@@ -81,9 +105,13 @@ Bastidores (vídeos) · Galeria de trabalhos · Diferenciais · Contato e horár
 - **Formulário de contato**: é somente visual. Valida os campos no front-end, avisa
   explicitamente que o envio real ainda não foi configurado e oferece um botão que
   monta a mensagem no WhatsApp para o usuário revisar antes de enviar.
+- **Textos**: descrevem o que o laboratório executa e de onde vem a prescrição.
+  Sem superlativos, sem frases de marketing e sem prazos, materiais ou
+  certificações que não tenham sido confirmados pelo Lab Leles.
 - **Acessibilidade**: HTML semântico, atalho para pular a navegação, foco visível,
-  modal com foco preso e navegação por teclado, textos com contraste mínimo AA e
-  respeito a `prefers-reduced-motion`.
+  modal com foco preso e navegação por teclado, contraste mínimo AA em todos os
+  textos e respeito a `prefers-reduced-motion`. Nenhum conteúdo depende de
+  animação para aparecer.
 
 ## Preparado para as próximas etapas
 

@@ -5,9 +5,7 @@ import { cn } from '@/utils/cn';
 interface VideoPlayerProps {
   src: string;
   poster: string;
-  /** Título curto exibido sobre o pôster. */
-  title: string;
-  /** Descrição do que aparece no vídeo, usada também como rótulo acessível. */
+  /** Rótulo acessível e legenda do vídeo. */
   description: string;
   /** Proporção natural do vídeo, por exemplo "3 / 4". */
   aspect: string;
@@ -15,11 +13,10 @@ interface VideoPlayerProps {
 }
 
 /**
- * Player leve para os vídeos do laboratório.
- * O vídeo só é baixado quando o visitante aperta play: até lá, exibe apenas o
- * frame de capa. Os controles nativos assumem depois do primeiro play.
+ * Player mínimo: o vídeo só é baixado quando o visitante aperta play.
+ * Até lá exibe apenas o frame de capa.
  */
-export function VideoPlayer({ src, poster, title, description, aspect, className }: VideoPlayerProps) {
+export function VideoPlayer({ src, poster, description, aspect, className }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -29,17 +26,12 @@ export function VideoPlayer({ src, poster, title, description, aspect, className
 
     setHasStarted(true);
     void video.play().catch(() => {
-      // Se o navegador bloquear a reprodução, os controles nativos continuam disponíveis.
+      // Se o navegador bloquear, os controles nativos seguem disponíveis.
     });
   };
 
   return (
-    <figure
-      className={cn(
-        'group relative mx-auto w-fit overflow-hidden rounded-2xl bg-graphite ring-1 ring-white/10',
-        className,
-      )}
-    >
+    <div className={cn('relative mx-auto w-fit bg-ink', className)}>
       <video
         ref={videoRef}
         src={src}
@@ -49,34 +41,25 @@ export function VideoPlayer({ src, poster, title, description, aspect, className
         controls={hasStarted}
         aria-label={description}
         onEnded={() => setHasStarted(false)}
-        className="block h-[380px] w-auto max-w-full object-cover sm:h-[420px] lg:h-[480px]"
+        className="block h-[400px] w-auto max-w-full object-cover sm:h-[440px] lg:h-[520px]"
         style={{ aspectRatio: aspect }}
       >
         Seu navegador não suporta a reprodução de vídeo.
       </video>
 
-      {/* Camada de capa: some assim que o vídeo começa */}
       {!hasStarted && (
         <button
           type="button"
           onClick={handlePlay}
-          aria-label={`Reproduzir vídeo: ${title}`}
-          className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-graphite/35 transition-colors duration-300 hover:bg-graphite/20"
+          aria-label={`Reproduzir vídeo: ${description}`}
+          className="group absolute inset-0 flex items-end p-4"
         >
-          <span
-            className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-wine text-white shadow-wine transition-transform duration-300 group-hover:scale-110"
-            aria-hidden="true"
-          >
-            <Play className="ml-0.5 h-6 w-6 fill-current" />
-          </span>
-
-          <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-graphite to-transparent p-5 pt-10 text-left">
-            <span className="block font-display text-sm font-semibold text-white">{title}</span>
+          <span className="inline-flex items-center gap-2.5 bg-paper px-3.5 py-2.5 text-meta font-medium text-ink transition-colors group-hover:bg-wine group-hover:text-white">
+            <Play className="h-3 w-3 fill-current" aria-hidden="true" />
+            Reproduzir
           </span>
         </button>
       )}
-
-      <figcaption className="sr-only">{description}</figcaption>
-    </figure>
+    </div>
   );
 }

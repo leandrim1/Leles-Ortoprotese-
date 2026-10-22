@@ -4,65 +4,63 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: { DEFAULT: '1.25rem', sm: '1.5rem', lg: '2rem' },
-      screens: { '2xl': '1280px' },
+      padding: { DEFAULT: '1.5rem', lg: '2.5rem' },
+      screens: { '2xl': '1320px' },
     },
     extend: {
       colors: {
+        // Vinho da marca, usado como acento e numa única área escura.
         wine: {
           DEFAULT: '#761B1D',
           deep: '#541315',
-          dark: '#3C0D0F',
-          soft: '#8F2A2C',
-          tint: '#FBF4F4',
+          dark: '#3A0D0E',
         },
-        graphite: {
-          DEFAULT: '#25272B',
-          soft: '#3A3D43',
+        // Neutros quentes: papel de ficha técnica, não cinza de interface.
+        paper: {
+          DEFAULT: '#FBFAF7',
+          dim: '#F2EFE9',
+          deep: '#E8E4DB',
         },
-        steel: {
-          DEFAULT: '#AEB2B7',
-          light: '#F3F4F6',
+        ink: {
+          DEFAULT: '#1C1B19',
+          soft: '#55534D',
+          faint: '#6E6B65',
+        },
+        rule: {
+          DEFAULT: '#DDD9D0',
+          strong: '#C6C1B6',
         },
       },
       fontFamily: {
-        display: ['Sora', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        // Archivo acompanha o peso condensado do logotipo; Plex Mono carrega
+        // os dados técnicos (índices, horários, códigos).
+        sans: ['Archivo', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
-      boxShadow: {
-        card: '0 1px 2px rgba(37, 39, 43, 0.04), 0 8px 24px -12px rgba(37, 39, 43, 0.18)',
-        'card-hover': '0 2px 4px rgba(37, 39, 43, 0.06), 0 22px 44px -18px rgba(118, 27, 29, 0.32)',
-        wine: '0 18px 40px -20px rgba(118, 27, 29, 0.55)',
+      fontSize: {
+        // Escala tipográfica fechada: nenhum título decide seu próprio tamanho.
+        label: ['0.6875rem', { lineHeight: '1.2', letterSpacing: '0.1em' }],
+        meta: ['0.75rem', { lineHeight: '1.5' }],
+        body: ['0.9375rem', { lineHeight: '1.65' }],
+        lead: ['1.0625rem', { lineHeight: '1.6' }],
+        h4: ['1rem', { lineHeight: '1.35', letterSpacing: '-0.01em' }],
+        h3: ['1.25rem', { lineHeight: '1.3', letterSpacing: '-0.015em' }],
+        h2: ['1.875rem', { lineHeight: '1.18', letterSpacing: '-0.022em' }],
+        'h2-lg': ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.028em' }],
+        h1: ['2.5rem', { lineHeight: '1.08', letterSpacing: '-0.03em' }],
+        'h1-lg': ['4rem', { lineHeight: '1.02', letterSpacing: '-0.035em' }],
       },
-      backgroundImage: {
-        'wine-gradient': 'linear-gradient(135deg, #761B1D 0%, #541315 55%, #3C0D0F 100%)',
-        'steel-sheen': 'linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 45%, #E3E5E8 100%)',
+      borderRadius: {
+        // Cantos quase retos: a forma vem da grade, não do arredondamento.
+        DEFAULT: '2px',
+        sm: '1px',
+        md: '3px',
       },
-      keyframes: {
-        'fade-up': {
-          from: { opacity: '0', transform: 'translate3d(0, 18px, 0)' },
-          to: { opacity: '1', transform: 'translate3d(0, 0, 0)' },
-        },
-        'fade-in': {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
-        },
-        'scale-in': {
-          from: { opacity: '0', transform: 'scale(0.97)' },
-          to: { opacity: '1', transform: 'scale(1)' },
-        },
-        'pulse-ring': {
-          '0%': { transform: 'scale(0.9)', opacity: '0.7' },
-          '70%': { transform: 'scale(1.5)', opacity: '0' },
-          '100%': { transform: 'scale(1.5)', opacity: '0' },
-        },
+      maxWidth: {
+        measure: '62ch',
+        'measure-sm': '46ch',
       },
-      animation: {
-        'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
-        'fade-in': 'fade-in 0.5s ease-out both',
-        'scale-in': 'scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both',
-        'pulse-ring': 'pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
+      transitionDuration: { DEFAULT: '150ms' },
     },
   },
   plugins: [],

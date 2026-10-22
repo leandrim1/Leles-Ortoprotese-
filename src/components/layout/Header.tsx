@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Menu, MessageCircle, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { LinkButton } from '@/components/ui/Button';
 import { navItems, trackedSections } from '@/data/navigation';
@@ -12,12 +12,11 @@ import { cn } from '@/utils/cn';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isScrolled = useScrolled(24);
+  const isScrolled = useScrolled(16);
   const activeSection = useScrollSpy(trackedSections);
 
   useLockBodyScroll(isMenuOpen);
 
-  // Fecha o menu ao voltar para o desktop, evitando um overlay preso.
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
     const handleChange = (event: MediaQueryListEvent) => {
@@ -41,34 +40,31 @@ export function Header() {
 
   const handleNavClick = (sectionId: string) => {
     setIsMenuOpen(false);
-    // Aguarda o fechamento do menu antes de rolar, para a medida ficar correta.
     window.setTimeout(() => scrollToSection(sectionId), 10);
   };
 
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        isScrolled || isMenuOpen
-          ? 'border-b border-steel/40 bg-white/95 shadow-sm backdrop-blur-md'
-          : 'border-b border-transparent bg-white/80 backdrop-blur-sm',
+        'fixed inset-x-0 top-0 z-50 bg-paper transition-colors',
+        isScrolled || isMenuOpen ? 'border-b border-rule' : 'border-b border-transparent',
       )}
     >
-      <div className="container flex h-20 items-center justify-between gap-4">
+      <div className="container flex h-[72px] items-center justify-between gap-6">
         <a
           href="#inicio"
           onClick={(event) => {
             event.preventDefault();
             handleNavClick('inicio');
           }}
-          className="rounded-xl"
+          className="rounded-sm"
           aria-label="Lab Leles — ir para o início"
         >
-          <Logo size={44} withWordmark priority />
+          <Logo size={34} withWordmark priority />
         </a>
 
         <nav className="hidden lg:block" aria-label="Navegação principal">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-7">
             {navItems.map((item) => {
               const isActive = activeSection === item.sectionId;
 
@@ -82,18 +78,13 @@ export function Header() {
                     }}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors',
-                      isActive ? 'text-wine' : 'text-graphite/70 hover:text-wine',
+                      'border-b py-1 text-meta transition-colors',
+                      isActive
+                        ? 'border-wine text-wine'
+                        : 'border-transparent text-ink-soft hover:border-rule-strong hover:text-ink',
                     )}
                   >
                     {item.label}
-                    <span
-                      className={cn(
-                        'absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-wine transition-transform duration-300',
-                        isActive ? 'scale-x-100' : 'scale-x-0',
-                      )}
-                      aria-hidden="true"
-                    />
                   </a>
                 </li>
               );
@@ -101,16 +92,14 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <LinkButton
             href={buildWhatsAppUrl(quoteMessage)}
             external
-            size="sm"
             className="hidden sm:inline-flex"
             aria-label="Solicitar orçamento pelo WhatsApp"
           >
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            Solicitar Orçamento
+            Solicitar orçamento
           </LinkButton>
 
           <button
@@ -119,22 +108,17 @@ export function Header() {
             aria-expanded={isMenuOpen}
             aria-controls="menu-mobile"
             aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-steel/60 text-graphite transition hover:border-wine hover:text-wine lg:hidden"
+            className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded text-ink transition-colors hover:text-wine lg:hidden"
           >
             {isMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* Menu compacto para celular e tablet */}
-      <div
-        id="menu-mobile"
-        hidden={!isMenuOpen}
-        className="border-t border-steel/40 bg-white lg:hidden"
-      >
-        <nav className="container py-4" aria-label="Navegação principal (celular)">
-          <ul className="flex flex-col">
-            {navItems.map((item) => {
+      <div id="menu-mobile" hidden={!isMenuOpen} className="border-t border-rule bg-paper lg:hidden">
+        <nav className="container py-2" aria-label="Navegação principal (celular)">
+          <ul>
+            {navItems.map((item, index) => {
               const isActive = activeSection === item.sectionId;
 
               return (
@@ -147,12 +131,11 @@ export function Header() {
                     }}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'flex min-h-[52px] items-center rounded-xl border-l-2 px-4 text-base font-medium transition-colors',
-                      isActive
-                        ? 'border-wine bg-wine-tint text-wine'
-                        : 'border-transparent text-graphite/80 hover:bg-steel-light hover:text-wine',
+                      'flex min-h-[52px] items-center gap-4 border-b border-rule text-body',
+                      isActive ? 'text-wine' : 'text-ink',
                     )}
                   >
+                    <span className="label text-ink-faint">{String(index + 1).padStart(2, '0')}</span>
                     {item.label}
                   </a>
                 </li>
@@ -163,12 +146,10 @@ export function Header() {
           <LinkButton
             href={buildWhatsAppUrl(quoteMessage)}
             external
-            size="lg"
-            className="mt-4 w-full"
+            className="my-5 w-full"
             aria-label="Solicitar orçamento pelo WhatsApp"
           >
-            <MessageCircle className="h-5 w-5" aria-hidden="true" />
-            Solicitar Orçamento
+            Solicitar orçamento
           </LinkButton>
         </nav>
       </div>

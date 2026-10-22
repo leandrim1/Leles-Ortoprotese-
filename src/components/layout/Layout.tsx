@@ -12,7 +12,7 @@ export function Layout({ children }: LayoutProps) {
     <>
       <a
         href="#conteudo"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-wine focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:inline-flex focus:min-h-[44px] focus:items-center focus:rounded focus:bg-wine focus:px-5 focus:text-meta focus:font-medium focus:text-white"
       >
         Ir para o conteúdo
       </a>

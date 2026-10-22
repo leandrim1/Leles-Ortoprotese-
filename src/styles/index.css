@@ -4,45 +4,39 @@
 
 @layer base {
   :root {
-    --header-height: 80px;
+    --header-height: 72px;
     color-scheme: light;
   }
 
   * {
-    @apply border-steel/40;
+    @apply border-rule;
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height);
+    scroll-padding-top: calc(var(--header-height) + 1.5rem);
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-white font-sans text-graphite antialiased;
-    /* Evita rolagem horizontal involuntária em telas estreitas. */
+    @apply bg-paper text-body font-sans text-ink antialiased;
     overflow-x: hidden;
-    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display font-semibold tracking-tight text-graphite;
-    text-wrap: balance;
+    @apply font-semibold text-ink;
   }
 
-  p {
-    text-wrap: pretty;
-  }
-
-  /* Estado de foco consistente em toda a navegação por teclado. */
+  /* Foco visível e sóbrio: contorno do traço da marca, sem halo. */
   :focus-visible {
-    @apply outline-none ring-2 ring-wine ring-offset-2 ring-offset-white;
+    @apply outline-none ring-1 ring-wine ring-offset-2 ring-offset-paper;
   }
 
-  .on-wine :focus-visible {
+  .on-dark :focus-visible {
     @apply ring-white ring-offset-wine-deep;
   }
 
@@ -52,43 +46,14 @@
 }
 
 @layer components {
-  .section-padding {
-    @apply py-16 sm:py-20 lg:py-28;
+  /* Rótulo técnico: o único lugar onde caixa alta e tracking são usados. */
+  .label {
+    @apply font-mono text-label font-medium uppercase;
   }
 
-  .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em];
-  }
-
-  /* Textura sutil de precisão/geometria usada em fundos escuros. */
-  .grid-texture {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-
-  .grid-texture-light {
-    background-image:
-      linear-gradient(to right, rgba(37, 39, 43, 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(37, 39, 43, 0.045) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-}
-
-@layer utilities {
-  .reveal {
-    opacity: 0;
-    transform: translate3d(0, 22px, 0);
-    transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
-  }
-
-  .reveal-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+  /* Régua fina — o elemento estrutural que substitui bordas e sombras. */
+  .rule-top {
+    @apply border-t border-rule;
   }
 }
 
@@ -101,14 +66,7 @@
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    will-change: auto;
   }
 }

@@ -2,61 +2,53 @@ import type { ReactNode } from 'react';
 import { cn } from '@/utils/cn';
 
 interface SectionHeadingProps {
-  eyebrow?: string;
+  /** Índice da seção, no formato "01". */
+  index: string;
+  /** Rótulo técnico curto. */
+  label: string;
   title: ReactNode;
-  description?: ReactNode;
-  /** Variante clara para uso sobre fundos escuros. */
+  /** Texto de apoio, limitado à medida de leitura. */
+  intro?: ReactNode;
   tone?: 'dark' | 'light';
-  align?: 'left' | 'center';
-  className?: string;
   /** Id usado pelo aria-labelledby da seção. */
-  id?: string;
+  id: string;
+  className?: string;
 }
 
-export function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  tone = 'dark',
-  align = 'center',
-  className,
-  id,
-}: SectionHeadingProps) {
+/**
+ * Cabeçalho de seção no formato de ficha técnica: índice e rótulo em mono
+ * sobre uma régua, título alinhado à esquerda. Sem centralização nem eyebrow
+ * decorativo repetido.
+ */
+export function SectionHeading({ index, label, title, intro, tone = 'dark', id, className }: SectionHeadingProps) {
   const isLight = tone === 'light';
 
   return (
-    <div
-      className={cn(
-        'max-w-3xl',
-        align === 'center' ? 'mx-auto text-center' : 'text-left',
-        className,
-      )}
-    >
-      {eyebrow && (
-        <span
-          className={cn(
-            'eyebrow mb-4',
-            align === 'center' && 'justify-center',
-            isLight ? 'text-steel' : 'text-wine',
-          )}
+    <header className={cn('border-t pt-5', isLight ? 'border-white/25' : 'border-ink/85', className)}>
+      <p className={cn('label flex items-center gap-3', isLight ? 'text-white/70' : 'text-ink-faint')}>
+        <span className={isLight ? 'text-white' : 'text-wine'}>{index}</span>
+        {label}
+      </p>
+
+      <div className="mt-6 gap-x-12 gap-y-5 lg:grid lg:grid-cols-12">
+        <h2
+          id={id}
+          className={cn('text-h2 lg:col-span-7 lg:text-h2-lg', isLight && 'text-white')}
         >
-          <span className={cn('h-px w-6', isLight ? 'bg-steel/60' : 'bg-wine/50')} aria-hidden="true" />
-          {eyebrow}
-        </span>
-      )}
+          {title}
+        </h2>
 
-      <h2
-        id={id}
-        className={cn('text-3xl sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]', isLight && 'text-white')}
-      >
-        {title}
-      </h2>
-
-      {description && (
-        <p className={cn('mt-5 text-base leading-relaxed sm:text-lg', isLight ? 'text-steel' : 'text-graphite/75')}>
-          {description}
-        </p>
-      )}
-    </div>
+        {intro && (
+          <p
+            className={cn(
+              'mt-4 max-w-measure text-body lg:col-span-5 lg:mt-1.5',
+              isLight ? 'text-white/70' : 'text-ink-soft',
+            )}
+          >
+            {intro}
+          </p>
+        )}
+      </div>
+    </header>
   );
 }
