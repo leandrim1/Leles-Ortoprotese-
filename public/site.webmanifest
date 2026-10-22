@@ -1,0 +1,15 @@
+{
+  "name": "Lab Leles — Ortoprótese",
+  "short_name": "Lab Leles",
+  "description": "Laboratório de prótese dentária em Patos de Minas, MG.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#761B1D",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

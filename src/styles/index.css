@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-height: 80px;
+    color-scheme: light;
+  }
+
+  * {
+    @apply border-steel/40;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-graphite antialiased;
+    /* Evita rolagem horizontal involuntária em telas estreitas. */
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold tracking-tight text-graphite;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Estado de foco consistente em toda a navegação por teclado. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-wine ring-offset-2 ring-offset-white;
+  }
+
+  .on-wine :focus-visible {
+    @apply ring-white ring-offset-wine-deep;
+  }
+
+  ::selection {
+    @apply bg-wine text-white;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em];
+  }
+
+  /* Textura sutil de precisão/geometria usada em fundos escuros. */
+  .grid-texture {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .grid-texture-light {
+    background-image:
+      linear-gradient(to right, rgba(37, 39, 43, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 39, 43, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
