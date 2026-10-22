@@ -277,6 +277,29 @@ export async function changeOrderStatus(
 
   if (!can(user.role, transition.permission)) throw forbidden();
 
+  await applyStatusTransition(sql, orderId, order.status, to, user.userId, options);
+}
+
+/**
+ * Executa a transição já autorizada.
+ *
+ * Separado de `changeOrderStatus` porque alguns avanços são autorizados pelo
+ * evento de negócio e não pela permissão genérica do perfil: ao aprovar o
+ * orçamento, o próprio cliente move o pedido, sem ter `orders:advance:*`.
+ * A transição continua validada contra a máquina de estados.
+ */
+export async function applyStatusTransition(
+  sql: Sql,
+  orderId: string,
+  from: OrderStatus,
+  to: OrderStatus,
+  actorUserId: string | null,
+  options: { note?: string; internal?: boolean } = {},
+): Promise<void> {
+  if (!findTransition(from, to)) {
+    throw badRequest('transicao_invalida', `Não é possível mudar de "${from}" para "${to}".`);
+  }
+
   await sql.transaction(async (tx) => {
     // Recarrega com trava: impede duas transições concorrentes a partir do mesmo estado.
     const current = await tx.query<{ status: OrderStatus }>(
@@ -284,7 +307,7 @@ export async function changeOrderStatus(
       [orderId],
     );
 
-    if (current.rows[0].status !== order.status) {
+    if (current.rows[0].status !== from) {
       throw badRequest('conflito_de_status', 'O pedido mudou de status enquanto você trabalhava nele.');
     }
 
@@ -301,15 +324,15 @@ export async function changeOrderStatus(
     await tx.query(
       `INSERT INTO order_status_history (order_id, from_status, to_status, changed_by, note, internal)
        VALUES ($1, $2, $3, $4, $5, $6)`,
-      [orderId, order.status, to, user.userId, options.note?.trim() || null, options.internal ?? false],
+      [orderId, from, to, actorUserId, options.note?.trim() || null, options.internal ?? false],
     );
 
     await recordAudit(tx, {
-      actorUserId: user.userId,
+      actorUserId,
       action: 'status_alterado',
       entity: 'orders',
       entityId: orderId,
-      before: { status: order.status },
+      before: { status: from },
       after: { status: to },
     });
   });
