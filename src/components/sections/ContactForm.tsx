@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Button } from '@/components/ui/Button';
+import { Info, MessageCircle, Send } from 'lucide-react';
+import { Button, LinkButton } from '@/components/ui/Button';
 import { SelectField, TextAreaField, TextField } from '@/components/ui/Field';
 import { services } from '@/data/services';
 import { buildWhatsAppUrl, contactFormMessage } from '@/utils/whatsapp';
@@ -17,8 +18,9 @@ const EMPTY_FORM: ContactFormValues = {
 };
 
 /**
- * Formulário visual. Nesta etapa nada é enviado a um servidor: os dados ficam
- * no navegador e servem para montar a mensagem no WhatsApp.
+ * Formulário visual de contato.
+ * Nesta etapa o envio não é integrado a nenhum servidor: os dados ficam apenas
+ * no navegador e podem ser usados para montar uma mensagem no WhatsApp.
  */
 export function ContactForm() {
   const [values, setValues] = useState<ContactFormValues>(EMPTY_FORM);
@@ -39,6 +41,10 @@ export function ContactForm() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsValidated(runValidation());
+  };
+
+  const handleWhatsAppHandoff = () => {
     if (!runValidation()) {
       setIsValidated(false);
       return;
@@ -49,21 +55,20 @@ export function ContactForm() {
   };
 
   return (
-    <div>
-      <h3 className="label border-t border-ink/85 pt-5 text-ink-faint">Enviar um caso</h3>
-
-      <p className="mt-5 max-w-measure text-body text-ink-soft">
-        Preencha os campos e o site monta a mensagem no WhatsApp para você revisar antes de enviar. Nada é
-        gravado aqui.
+    <div className="rounded-2xl border border-steel/40 bg-white p-6 shadow-card sm:p-8">
+      <h3 className="font-display text-xl font-semibold">Envie os dados do seu trabalho</h3>
+      <p className="mt-2 text-sm leading-relaxed text-graphite/70">
+        Preencha os campos abaixo para montar sua mensagem. O envio automático ainda não foi configurado nesta
+        versão do site.
       </p>
 
-      <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-6">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <form onSubmit={handleSubmit} noValidate className="mt-7 space-y-5">
+        <div className="grid gap-5 sm:grid-cols-2">
           <TextField
             label="Nome"
             name="name"
             autoComplete="name"
-            placeholder="Nome completo"
+            placeholder="Seu nome completo"
             value={values.name}
             error={errors.name}
             onChange={(event) => updateField('name', event.target.value)}
@@ -74,7 +79,7 @@ export function ContactForm() {
             label="Clínica ou laboratório"
             name="clinic"
             autoComplete="organization"
-            placeholder="Opcional"
+            placeholder="Nome da clínica"
             optional
             value={values.clinic}
             onChange={(event) => updateField('clinic', event.target.value)}
@@ -99,7 +104,7 @@ export function ContactForm() {
             type="email"
             inputMode="email"
             autoComplete="email"
-            placeholder="nome@clinica.com.br"
+            placeholder="seuemail@exemplo.com"
             value={values.email}
             error={errors.email}
             onChange={(event) => updateField('email', event.target.value)}
@@ -108,14 +113,14 @@ export function ContactForm() {
         </div>
 
         <SelectField
-          label="Serviço"
+          label="Serviço de interesse"
           name="service"
           value={values.service}
           error={errors.service}
           onChange={(event) => updateField('service', event.target.value)}
           required
         >
-          <option value="">Selecione</option>
+          <option value="">Selecione um serviço</option>
           {services.map((service) => (
             <option key={service.id} value={service.name}>
               {service.name}
@@ -125,32 +130,65 @@ export function ContactForm() {
         </SelectField>
 
         <TextAreaField
-          label="O caso"
+          label="Mensagem"
           name="message"
           rows={4}
-          placeholder="Conte o que precisa ser feito."
+          placeholder="Descreva o trabalho que você precisa."
           value={values.message}
           error={errors.message}
           onChange={(event) => updateField('message', event.target.value)}
           required
         />
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
-          <Button type="submit">Abrir no WhatsApp</Button>
-          <p className="text-meta text-ink-faint">O envio direto pelo site ainda não foi configurado.</p>
+        {/* Aviso permanente sobre o estado do formulário nesta etapa */}
+        <p className="flex items-start gap-2.5 rounded-xl border border-steel/50 bg-steel-light/60 p-4 text-xs leading-relaxed text-graphite/70">
+          <Info className="mt-px h-4 w-4 shrink-0 text-wine" aria-hidden="true" />
+          <span>
+            Este formulário é apenas visual. Os dados não são enviados nem armazenados em nenhum servidor. Use o
+            botão do WhatsApp para montar a mensagem e revisá-la antes de enviar.
+          </span>
+        </p>
+
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button type="submit" variant="ghost" size="lg" className="sm:flex-1">
+            <Send className="h-4 w-4" aria-hidden="true" />
+            Validar dados
+          </Button>
+
+          <Button type="button" size="lg" className="sm:flex-1" onClick={handleWhatsAppHandoff}>
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            Montar mensagem no WhatsApp
+          </Button>
         </div>
 
         <div aria-live="polite" className="min-h-[1.25rem]">
           {isValidated && (
-            <p className="text-meta text-wine">
-              Mensagem montada. Revise no WhatsApp antes de enviar.
+            <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs leading-relaxed text-emerald-800">
+              Dados validados. O envio automático ainda não foi configurado — abra o WhatsApp pelo botão acima ou
+              fale diretamente com o laboratório.
             </p>
           )}
+
           {!isValidated && Object.keys(errors).length > 0 && (
-            <p className="text-meta text-wine">Revise os campos marcados.</p>
+            <p className="rounded-xl border border-wine/25 bg-wine-tint px-4 py-3 text-xs leading-relaxed text-wine">
+              Revise os campos destacados para continuar.
+            </p>
           )}
         </div>
       </form>
+
+      <p className="mt-6 border-t border-steel/40 pt-5 text-xs text-graphite/70">
+        Prefere falar agora?{' '}
+        <LinkButton
+          href={buildWhatsAppUrl()}
+          external
+          variant="ghost"
+          size="sm"
+          className="ml-1 border-0 px-0 text-wine underline underline-offset-4 hover:text-wine-deep"
+        >
+          Abrir conversa no WhatsApp
+        </LinkButton>
+      </p>
     </div>
   );
 }

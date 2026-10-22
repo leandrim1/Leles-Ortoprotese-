@@ -1,3 +1,5 @@
+import type { LucideIcon } from 'lucide-react';
+
 /** Item de navegação por âncora da página institucional. */
 export interface NavItem {
   /** Rótulo exibido no menu. */
@@ -9,30 +11,42 @@ export interface NavItem {
 /** Serviço oferecido pelo laboratório. */
 export interface Service {
   id: string;
-  /** Índice de dois dígitos usado na listagem. */
-  index: string;
   name: string;
+  /** Chamada curta exibida acima do nome no card. */
+  tagline: string;
   description: string;
+  icon: LucideIcon;
   image: string;
   imageSmall: string;
-  /** Texto alternativo da imagem. */
+  /** Texto alternativo da imagem do card. */
   imageAlt: string;
+  /** Tópicos objetivos exibidos como lista no card. */
+  highlights: string[];
 }
 
-/** Afirmação sobre como o laboratório trabalha. */
-export interface Practice {
+/** Pilar institucional da seção "O Laboratório". */
+export interface Pillar {
   id: string;
   title: string;
   description: string;
+  icon: LucideIcon;
 }
 
 /** Etapa do fluxo de trabalho com o profissional. */
 export interface ProcessStep {
   id: string;
-  /** Índice de dois dígitos, por exemplo "01". */
-  step: string;
+  step: number;
   title: string;
   description: string;
+  icon: LucideIcon;
+}
+
+/** Diferencial institucional. */
+export interface Differential {
+  id: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
 }
 
 /** Imagem da galeria de trabalhos. */

@@ -76,23 +76,22 @@ export function Modal({ isOpen, onClose, label, children }: ModalProps) {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="absolute inset-0 bg-ink/90" aria-hidden="true" />
+      <div className="absolute inset-0 animate-fade-in bg-graphite/85 backdrop-blur-sm" aria-hidden="true" />
 
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label={label}
-        className="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col"
+        className="relative z-10 flex max-h-[90vh] w-full max-w-4xl animate-scale-in flex-col"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Fechar visualização"
-          className="absolute -top-11 right-0 z-20 inline-flex h-10 items-center gap-2 rounded px-2 text-label font-mono uppercase text-white/70 transition-colors hover:text-white"
+          className="absolute -top-2 right-0 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur transition hover:bg-white/25 sm:-top-12 sm:right-0"
         >
-          Fechar
-          <X className="h-4 w-4" aria-hidden="true" />
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
 
         {children}

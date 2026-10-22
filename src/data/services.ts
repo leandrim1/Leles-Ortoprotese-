@@ -1,3 +1,4 @@
+import { Activity, Boxes, Layers, Printer, ShieldCheck } from 'lucide-react';
 import type { Service } from '@/types';
 
 import ortopediaImg from '@/assets/gallery/placa-ortopedica.webp';
@@ -13,57 +14,68 @@ import alinhadoresThumb from '@/assets/gallery/modelo-3d-banda-sm.webp';
 
 /**
  * Serviços informados pelo laboratório.
- * As descrições dizem o que o laboratório executa e de onde vem a prescrição.
- * Materiais, prazos e indicações clínicas são definidos caso a caso e não
- * aparecem aqui enquanto não forem confirmados pelo Lab Leles.
+ * As descrições são institucionais e devem ser validadas pelo Lab Leles antes de
+ * receberem especificações técnicas, materiais ou prazos.
  */
 export const services: Service[] = [
   {
     id: 'ortopedia-dentaria',
-    index: '01',
     name: 'Ortopedia dentária',
+    tagline: 'Aparelhos ortopédicos',
     description:
-      'Aparelhos ortopédicos confeccionados a partir dos modelos e da prescrição enviados pelo dentista.',
+      'Confecção de aparelhos de ortopedia dentária a partir do planejamento enviado pelo profissional, com acabamento cuidadoso em cada peça.',
+    icon: Activity,
     image: ortopediaImg,
     imageSmall: ortopediaThumb,
-    imageAlt: 'Aparelho ortopédico em acrílico azul com parafuso expansor.',
+    imageAlt: 'Aparelho ortopédico em acrílico azul com parafuso expansor, produzido no Lab Leles.',
+    highlights: ['Trabalho sob prescrição do profissional', 'Acabamento conferido peça a peça'],
   },
   {
     id: 'ortodontia-fixa-digital',
-    index: '02',
     name: 'Ortodontia fixa digital',
+    tagline: 'Fluxo digital',
     description:
-      'Trabalhos de ortodontia fixa planejados em ambiente digital e executados sobre modelos impressos.',
+      'Soluções de ortodontia fixa apoiadas em recursos digitais, do recebimento do caso à entrega do trabalho ao consultório.',
+    icon: Layers,
     image: ortodontiaImg,
     imageSmall: ortodontiaThumb,
-    imageAlt: 'Modelo impresso com estrutura metálica de ortodontia fixa adaptada.',
+    imageAlt: 'Modelo odontológico impresso com estrutura metálica de ortodontia fixa.',
+    highlights: ['Apoio de recursos digitais no planejamento', 'Adaptação verificada sobre modelo'],
   },
   {
     id: 'impressao-3d',
-    index: '03',
     name: 'Impressão 3D',
-    description: 'Impressão de modelos e peças odontológicas que entram no fluxo de trabalho do laboratório.',
+    tagline: 'Modelos e peças',
+    description:
+      'Impressão 3D aplicada à produção de modelos e peças odontológicas, ampliando as possibilidades de planejamento laboratorial.',
+    icon: Printer,
     image: impressaoImg,
     imageSmall: impressaoThumb,
     imageAlt: 'Modelos odontológicos impressos em 3D com aparelho expansor instalado.',
+    highlights: ['Modelos impressos para o fluxo de trabalho', 'Reprodução fiel da anatomia recebida'],
   },
   {
     id: 'placas-bruxismo',
-    index: '04',
     name: 'Placas para bruxismo',
-    description: 'Placas confeccionadas conforme a indicação do dentista responsável pelo caso.',
+    tagline: 'Placas miorrelaxantes',
+    description:
+      'Placas voltadas ao manejo do bruxismo, confeccionadas conforme a indicação do dentista responsável pelo caso.',
+    icon: ShieldCheck,
     image: placasImg,
     imageSmall: placasThumb,
-    imageAlt: 'Peças em resina e acrílico finalizadas sobre modelos odontológicos.',
+    imageAlt: 'Placas e peças em resina sobre modelos odontológicos.',
+    highlights: ['Confecção conforme indicação clínica', 'Ajuste de oclusão sobre os modelos'],
   },
   {
     id: 'alinhadores',
-    index: '05',
     name: 'Alinhadores',
+    tagline: 'Soluções estéticas',
     description:
-      'Execução laboratorial de alinhadores a partir do planejamento enviado. O tratamento é conduzido pelo dentista.',
+      'Soluções laboratoriais relacionadas a alinhadores, executadas a partir do planejamento do profissional responsável pelo tratamento.',
+    icon: Boxes,
     image: alinhadoresImg,
     imageSmall: alinhadoresThumb,
     imageAlt: 'Modelo odontológico impresso em 3D com peça metálica adaptada.',
+    highlights: ['Execução a partir do planejamento recebido', 'Tratamento clínico conduzido pelo dentista'],
   },
 ];

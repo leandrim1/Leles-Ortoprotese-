@@ -11,7 +11,7 @@ function RouteFallback() {
     <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-live="polite">
       <span className="sr-only">Carregando…</span>
       <span
-        className="h-6 w-6 animate-spin rounded-full border border-rule-strong border-t-wine motion-reduce:animate-none"
+        className="h-8 w-8 animate-spin rounded-full border-2 border-steel/50 border-t-wine motion-reduce:animate-none"
         aria-hidden="true"
       />
     </div>
